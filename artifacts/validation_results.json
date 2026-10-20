@@ -1,0 +1,1219 @@
+{
+  "generated_at": {
+    "$date": "2026-10-20T13:06:31.682Z"
+  },
+  "counts_before": {
+    "books": 20,
+    "readers": 16,
+    "borrow_logs": 26,
+    "category_stats": 5,
+    "book_logs": 0
+  },
+  "queries": {
+    "Q1_price_gt_80": {
+      "query": {
+        "price": {
+          "$gt": 80
+        }
+      },
+      "count": 7,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee5"
+          },
+          "isbn": "9787121362726",
+          "title": "深入理解计算机系统（原书第3版）",
+          "author": "Randal E. Bryant",
+          "publisher": "电子工业出版社",
+          "category": "计算机",
+          "price": 139.0,
+          "stock": 8,
+          "rating": 4.8,
+          "tags": [
+            "计算机",
+            "体系结构",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2021-11-14T16:00:00Z"
+          },
+          "borrow_count": 156
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee8"
+          },
+          "isbn": "9787115293800",
+          "title": "JavaScript高级程序设计（第4版）",
+          "author": "Matt Frisbie",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 109.0,
+          "stock": 17,
+          "rating": 4.4,
+          "tags": [
+            "JavaScript",
+            "前端",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2020-05-31T16:00:00Z"
+          },
+          "borrow_count": 134
+        }
+      ]
+    },
+    "Q2_stock_lt_10": {
+      "query": {
+        "stock": {
+          "$lt": 10
+        }
+      },
+      "count": 8,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee5"
+          },
+          "isbn": "9787121362726",
+          "title": "深入理解计算机系统（原书第3版）",
+          "author": "Randal E. Bryant",
+          "publisher": "电子工业出版社",
+          "category": "计算机",
+          "price": 139.0,
+          "stock": 8,
+          "rating": 4.8,
+          "tags": [
+            "计算机",
+            "体系结构",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2021-11-14T16:00:00Z"
+          },
+          "borrow_count": 156
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee7"
+          },
+          "isbn": "9787302653315",
+          "title": "数据结构（C语言版）",
+          "author": "严蔚敏",
+          "publisher": "清华大学出版社",
+          "category": "计算机",
+          "price": 39.0,
+          "stock": 0,
+          "rating": 4.3,
+          "tags": [
+            "数据结构",
+            "教材"
+          ],
+          "publish_date": {
+            "$date": "2007-07-31T16:00:00Z"
+          },
+          "borrow_count": 203
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590beeb"
+          },
+          "isbn": "9787549529322",
+          "title": "平凡的世界（全三部）",
+          "author": "路遥",
+          "publisher": "北京十月文艺出版社",
+          "category": "文学",
+          "price": 98.0,
+          "stock": 9,
+          "rating": 4.8,
+          "tags": [
+            "文学",
+            "小说",
+            "经典"
+          ],
+          "publish_date": {
+            "$date": "2017-04-30T16:00:00Z"
+          },
+          "borrow_count": 167
+        }
+      ]
+    },
+    "Q3_isbn_eq": {
+      "query": {
+        "isbn": {
+          "$eq": "9787115428028"
+        }
+      },
+      "count": 1,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        }
+      ]
+    },
+    "Q5_publisher_ne": {
+      "query": {
+        "publisher": {
+          "$ne": "人民邮电出版社"
+        }
+      },
+      "count": 16,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee5"
+          },
+          "isbn": "9787121362726",
+          "title": "深入理解计算机系统（原书第3版）",
+          "author": "Randal E. Bryant",
+          "publisher": "电子工业出版社",
+          "category": "计算机",
+          "price": 139.0,
+          "stock": 8,
+          "rating": 4.8,
+          "tags": [
+            "计算机",
+            "体系结构",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2021-11-14T16:00:00Z"
+          },
+          "borrow_count": 156
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee7"
+          },
+          "isbn": "9787302653315",
+          "title": "数据结构（C语言版）",
+          "author": "严蔚敏",
+          "publisher": "清华大学出版社",
+          "category": "计算机",
+          "price": 39.0,
+          "stock": 0,
+          "rating": 4.3,
+          "tags": [
+            "数据结构",
+            "教材"
+          ],
+          "publish_date": {
+            "$date": "2007-07-31T16:00:00Z"
+          },
+          "borrow_count": 203
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee9"
+          },
+          "isbn": "9787544253994",
+          "title": "活着",
+          "author": "余华",
+          "publisher": "作家出版社",
+          "category": "文学",
+          "price": 28.0,
+          "stock": 32,
+          "rating": 4.9,
+          "tags": [
+            "文学",
+            "小说",
+            "经典"
+          ],
+          "publish_date": {
+            "$date": "2012-07-31T16:00:00Z"
+          },
+          "borrow_count": 243
+        }
+      ]
+    },
+    "Q6_category_in": {
+      "query": {
+        "category": {
+          "$in": [
+            "计算机",
+            "经济管理"
+          ]
+        }
+      },
+      "count": 10,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590beee"
+          },
+          "isbn": "9787302423282",
+          "title": "经济学原理（第7版）",
+          "author": "N.格里高利·曼昆",
+          "publisher": "北京大学出版社",
+          "category": "经济管理",
+          "price": 128.0,
+          "stock": 14,
+          "rating": 4.4,
+          "tags": [
+            "经济学",
+            "教材",
+            "入门"
+          ],
+          "publish_date": {
+            "$date": "2020-03-31T16:00:00Z"
+          },
+          "borrow_count": 118
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590beef"
+          },
+          "isbn": "9787521701326",
+          "title": "公司理财",
+          "author": "罗斯· Westerfield",
+          "publisher": "中国人民大学出版社",
+          "category": "经济管理",
+          "price": 89.0,
+          "stock": 11,
+          "rating": 4.2,
+          "tags": [
+            "金融",
+            "教材"
+          ],
+          "publish_date": {
+            "$date": "2018-06-30T16:00:00Z"
+          },
+          "borrow_count": 87
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bef0"
+          },
+          "isbn": "9787521711881",
+          "title": "创业企业管理",
+          "author": "张创业",
+          "publisher": "北京大学出版社",
+          "category": "经济管理",
+          "price": 59.0,
+          "stock": 6,
+          "rating": 4.0,
+          "tags": [
+            "管理",
+            "创业"
+          ],
+          "publish_date": {
+            "$date": "2021-08-31T16:00:00Z"
+          },
+          "borrow_count": 45
+        }
+      ]
+    },
+    "Q7_rating_and_category": {
+      "query": {
+        "$and": [
+          {
+            "rating": {
+              "$gte": 4.0
+            }
+          },
+          {
+            "category": "计算机"
+          }
+        ]
+      },
+      "count": 7,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee5"
+          },
+          "isbn": "9787121362726",
+          "title": "深入理解计算机系统（原书第3版）",
+          "author": "Randal E. Bryant",
+          "publisher": "电子工业出版社",
+          "category": "计算机",
+          "price": 139.0,
+          "stock": 8,
+          "rating": 4.8,
+          "tags": [
+            "计算机",
+            "体系结构",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2021-11-14T16:00:00Z"
+          },
+          "borrow_count": 156
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee6"
+          },
+          "isbn": "9787115546081",
+          "title": "算法图解",
+          "author": "Aditya Bhargava",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 49.0,
+          "stock": 22,
+          "rating": 4.5,
+          "tags": [
+            "算法",
+            "入门",
+            "图解"
+          ],
+          "publish_date": {
+            "$date": "2019-03-31T16:00:00Z"
+          },
+          "borrow_count": 98
+        }
+      ]
+    },
+    "Q8_low_rating_or_empty_stock": {
+      "query": {
+        "$or": [
+          {
+            "rating": {
+              "$lt": 3.5
+            }
+          },
+          {
+            "stock": 0
+          }
+        ]
+      },
+      "count": 1,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee7"
+          },
+          "isbn": "9787302653315",
+          "title": "数据结构（C语言版）",
+          "author": "严蔚敏",
+          "publisher": "清华大学出版社",
+          "category": "计算机",
+          "price": 39.0,
+          "stock": 0,
+          "rating": 4.3,
+          "tags": [
+            "数据结构",
+            "教材"
+          ],
+          "publish_date": {
+            "$date": "2007-07-31T16:00:00Z"
+          },
+          "borrow_count": 203
+        }
+      ]
+    },
+    "Q9_title_regex_python": {
+      "query": {
+        "title": {
+          "$regex": "Python",
+          "$options": "i"
+        }
+      },
+      "count": 1,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        }
+      ]
+    },
+    "Q10_tags_all": {
+      "query": {
+        "tags": {
+          "$all": [
+            "编程",
+            "入门"
+          ]
+        }
+      },
+      "count": 1,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        }
+      ]
+    },
+    "Q11_tags_size_3": {
+      "query": {
+        "tags": {
+          "$size": 3
+        }
+      },
+      "count": 12,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee5"
+          },
+          "isbn": "9787121362726",
+          "title": "深入理解计算机系统（原书第3版）",
+          "author": "Randal E. Bryant",
+          "publisher": "电子工业出版社",
+          "category": "计算机",
+          "price": 139.0,
+          "stock": 8,
+          "rating": 4.8,
+          "tags": [
+            "计算机",
+            "体系结构",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2021-11-14T16:00:00Z"
+          },
+          "borrow_count": 156
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee6"
+          },
+          "isbn": "9787115546081",
+          "title": "算法图解",
+          "author": "Aditya Bhargava",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 49.0,
+          "stock": 22,
+          "rating": 4.5,
+          "tags": [
+            "算法",
+            "入门",
+            "图解"
+          ],
+          "publish_date": {
+            "$date": "2019-03-31T16:00:00Z"
+          },
+          "borrow_count": 98
+        }
+      ]
+    },
+    "Q12_tags_exists": {
+      "query": {
+        "tags": {
+          "$exists": true
+        }
+      },
+      "count": 17,
+      "sample": [
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee8"
+          },
+          "isbn": "9787115293800",
+          "title": "JavaScript高级程序设计（第4版）",
+          "author": "Matt Frisbie",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 109.0,
+          "stock": 17,
+          "rating": 4.4,
+          "tags": [
+            "JavaScript",
+            "前端",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2020-05-31T16:00:00Z"
+          },
+          "borrow_count": 134
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee4"
+          },
+          "isbn": "9787115428028",
+          "title": "Python编程：从入门到实践",
+          "author": "埃里克·马瑟斯",
+          "publisher": "人民邮电出版社",
+          "category": "计算机",
+          "price": 89.0,
+          "stock": 15,
+          "rating": 4.6,
+          "tags": [
+            "编程",
+            "入门",
+            "Python"
+          ],
+          "publish_date": {
+            "$date": "2023-02-28T16:00:00Z"
+          },
+          "borrow_count": 127
+        },
+        {
+          "_id": {
+            "$oid": "6ad75d299b8ca93f5590bee5"
+          },
+          "isbn": "9787121362726",
+          "title": "深入理解计算机系统（原书第3版）",
+          "author": "Randal E. Bryant",
+          "publisher": "电子工业出版社",
+          "category": "计算机",
+          "price": 139.0,
+          "stock": 8,
+          "rating": 4.8,
+          "tags": [
+            "计算机",
+            "体系结构",
+            "进阶"
+          ],
+          "publish_date": {
+            "$date": "2021-11-14T16:00:00Z"
+          },
+          "borrow_count": 156
+        }
+      ]
+    },
+    "Q13_id_string_type": {
+      "query": {
+        "_id": {
+          "$type": "string"
+        }
+      },
+      "count": 1,
+      "sample": [
+        {
+          "_id": "ISBN-OLD-0001",
+          "isbn": "9787111187776",
+          "title": "数据结构基础教程（第二版）",
+          "author": "李春葆",
+          "publisher": "清华大学出版社",
+          "category": "计算机",
+          "price": 45.0,
+          "stock": 7,
+          "rating": 4.2,
+          "tags": [
+            "数据结构",
+            "教材"
+          ],
+          "publish_date": {
+            "$date": "2019-12-31T16:00:00Z"
+          },
+          "borrow_count": 88
+        }
+      ]
+    },
+    "Q4_reader_email_null": {
+      "query": {
+        "email": {
+          "$eq": null
+        }
+      },
+      "collection": "readers",
+      "count": 3,
+      "sample": [
+        {
+          "card_no": "R20240004",
+          "name": "刘洋",
+          "college": "外国语学院",
+          "email": null,
+          "phone": "13600136000",
+          "level": "普通",
+          "register_date": {
+            "$date": "2024-09-09T16:00:00Z"
+          },
+          "fav_categories": [
+            "外语",
+            "文学"
+          ]
+        },
+        {
+          "card_no": "R20240008",
+          "name": "周涛",
+          "college": "经济管理学院",
+          "email": null,
+          "phone": "13200132000",
+          "level": "普通",
+          "register_date": {
+            "$date": "2024-09-21T16:00:00Z"
+          },
+          "fav_categories": [
+            "经济管理",
+            "外语"
+          ]
+        },
+        {
+          "card_no": "R20240011",
+          "name": "冯雪",
+          "college": "文学院",
+          "email": null,
+          "phone": "15900159000",
+          "level": "普通",
+          "register_date": {
+            "$date": "2024-09-03T16:00:00Z"
+          },
+          "fav_categories": [
+            "文学",
+            "外语"
+          ]
+        }
+      ]
+    },
+    "Q14_rating_sort_limit": {
+      "count": 5,
+      "sample": [
+        {
+          "title": "活着",
+          "rating": 4.9
+        },
+        {
+          "title": "哥德尔证明",
+          "rating": 4.8
+        },
+        {
+          "title": "深入理解计算机系统（原书第3版）",
+          "rating": 4.8
+        },
+        {
+          "title": "平凡的世界（全三部）",
+          "rating": 4.8
+        },
+        {
+          "title": "费马大定理",
+          "rating": 4.7
+        }
+      ]
+    },
+    "Q15_projection": {
+      "projection": {
+        "_id": 0,
+        "title": 1,
+        "price": 1,
+        "rating": 1
+      },
+      "count": 5,
+      "sample": [
+        {
+          "title": "Python编程：从入门到实践",
+          "price": 89.0,
+          "rating": 4.6
+        },
+        {
+          "title": "深入理解计算机系统（原书第3版）",
+          "price": 139.0,
+          "rating": 4.8
+        },
+        {
+          "title": "算法图解",
+          "price": 49.0,
+          "rating": 4.5
+        },
+        {
+          "title": "数据结构（C语言版）",
+          "price": 39.0,
+          "rating": 4.3
+        },
+        {
+          "title": "JavaScript高级程序设计（第4版）",
+          "price": 109.0,
+          "rating": 4.4
+        }
+      ]
+    },
+    "Q16_distinct_categories": {
+      "values": [
+        "外语",
+        "数学",
+        "文学",
+        "经济管理",
+        "计算机"
+      ]
+    }
+  },
+  "mutations": {
+    "skipped": "use --mutate to execute U/D operations"
+  },
+  "reports": {
+    "A1_category_statistics": [
+      {
+        "_id": "计算机",
+        "book_count": 7,
+        "max_stock": 22,
+        "min_stock": 0,
+        "total_stock": 82,
+        "average_rating": 4.5,
+        "average_price": 78.43
+      },
+      {
+        "_id": "文学",
+        "book_count": 5,
+        "max_stock": 32,
+        "min_stock": 5,
+        "total_stock": 79,
+        "average_rating": 4.7,
+        "average_price": 61.74
+      },
+      {
+        "_id": "数学",
+        "book_count": 3,
+        "max_stock": 25,
+        "min_stock": 4,
+        "total_stock": 48,
+        "average_rating": 4.67,
+        "average_price": 43.0
+      },
+      {
+        "_id": "经济管理",
+        "book_count": 3,
+        "max_stock": 14,
+        "min_stock": 6,
+        "total_stock": 31,
+        "average_rating": 4.2,
+        "average_price": 92.0
+      },
+      {
+        "_id": "外语",
+        "book_count": 2,
+        "max_stock": 16,
+        "min_stock": 3,
+        "total_stock": 19,
+        "average_rating": 4.35,
+        "average_price": 85.0
+      }
+    ],
+    "A2_publisher_top5": [
+      {
+        "_id": "人民邮电出版社",
+        "book_count": 4
+      },
+      {
+        "_id": "北京大学出版社",
+        "book_count": 3
+      },
+      {
+        "_id": "中国人民大学出版社",
+        "book_count": 2
+      },
+      {
+        "_id": "清华大学出版社",
+        "book_count": 2
+      },
+      {
+        "_id": "电子工业出版社",
+        "book_count": 2
+      }
+    ],
+    "A3_most_common_category": [
+      {
+        "_id": "计算机",
+        "count": 7
+      }
+    ],
+    "A4_top_rated_books": [
+      {
+        "title": "活着",
+        "rating": 4.9,
+        "borrow_count": 243
+      },
+      {
+        "title": "平凡的世界（全三部）",
+        "rating": 4.8,
+        "borrow_count": 167
+      },
+      {
+        "title": "深入理解计算机系统（原书第3版）",
+        "rating": 4.8,
+        "borrow_count": 156
+      }
+    ],
+    "A5_book_sales": [
+      {
+        "isbn": "9787121362726",
+        "title": "深入理解计算机系统（原书第3版）",
+        "sales": 21684.0
+      },
+      {
+        "isbn": "9787549529322",
+        "title": "平凡的世界（全三部）",
+        "sales": 16366.0
+      },
+      {
+        "isbn": "9787302423282",
+        "title": "经济学原理（第7版）",
+        "sales": 15104.0
+      },
+      {
+        "isbn": "9787115293800",
+        "title": "JavaScript高级程序设计（第4版）",
+        "sales": 14606.0
+      },
+      {
+        "isbn": "9787121362855",
+        "title": "设计模式：可复用面向对象软件的基础",
+        "sales": 13509.0
+      },
+      {
+        "isbn": "9787115428028",
+        "title": "Python编程：从入门到实践",
+        "sales": 11303.0
+      },
+      {
+        "isbn": "9787020042033",
+        "title": "红楼梦",
+        "sales": 11283.3
+      },
+      {
+        "isbn": "9787302653315",
+        "title": "数据结构（C语言版）",
+        "sales": 7917.0
+      },
+      {
+        "isbn": "9787532754808",
+        "title": "百年孤独（精装）",
+        "sales": 7810.0
+      },
+      {
+        "isbn": "9787521701326",
+        "title": "公司理财",
+        "sales": 7743.0
+      },
+      {
+        "isbn": "9787544253994",
+        "title": "活着",
+        "sales": 6804.0
+      },
+      {
+        "isbn": "9787040405241",
+        "title": "数学之美",
+        "sales": 5688.0
+      },
+      {
+        "isbn": "9787532718758",
+        "title": "飘",
+        "sales": 5168.0
+      },
+      {
+        "isbn": "9787115546081",
+        "title": "算法图解",
+        "sales": 4802.0
+      },
+      {
+        "isbn": "9787544674585",
+        "title": "牛津英语用法指南",
+        "sales": 4602.0
+      },
+      {
+        "isbn": "9787544720973",
+        "title": "英语语法新思维",
+        "sales": 4368.0
+      },
+      {
+        "isbn": "9787115298428",
+        "title": "费马大定理",
+        "sales": 4140.0
+      },
+      {
+        "isbn": "9787111187776",
+        "title": "数据结构基础教程（第二版）",
+        "sales": 3960.0
+      },
+      {
+        "isbn": "9787518910041",
+        "title": "哥德尔证明",
+        "sales": 2928.0
+      },
+      {
+        "isbn": "9787521711881",
+        "title": "创业企业管理",
+        "sales": 2655.0
+      }
+    ],
+    "A6_borrow_trend": [
+      {
+        "_id": "2024年",
+        "borrow_count": 8
+      },
+      {
+        "_id": "2025年",
+        "borrow_count": 18
+      }
+    ],
+    "A7_reader_top5": [
+      {
+        "borrow_count": 3,
+        "card_no": "R20240005",
+        "name": "陈静",
+        "college": "数学与统计学院"
+      },
+      {
+        "borrow_count": 3,
+        "card_no": "R20240008",
+        "name": "周涛",
+        "college": "经济管理学院"
+      },
+      {
+        "borrow_count": 2,
+        "card_no": "R20240001",
+        "name": "张明",
+        "college": "计算机学院"
+      },
+      {
+        "borrow_count": 2,
+        "card_no": "R20240002",
+        "name": "李小雨",
+        "college": "经济管理学院"
+      },
+      {
+        "borrow_count": 2,
+        "card_no": "R20240004",
+        "name": "刘洋",
+        "college": "外国语学院"
+      }
+    ],
+    "A8_college_borrow_ranking": [
+      {
+        "_id": "计算机学院",
+        "borrow_count": 6
+      },
+      {
+        "_id": "数学与统计学院",
+        "borrow_count": 5
+      },
+      {
+        "_id": "文学院",
+        "borrow_count": 5
+      },
+      {
+        "_id": "经济管理学院",
+        "borrow_count": 5
+      },
+      {
+        "_id": "外国语学院",
+        "borrow_count": 3
+      },
+      {
+        "_id": "管理学院",
+        "borrow_count": 2
+      }
+    ]
+  },
+  "A9_category_stats": [
+    {
+      "_id": "外语",
+      "book_count": 2,
+      "average_rating": 4.35,
+      "max_stock": 16,
+      "min_stock": 3,
+      "total_stock": 19
+    },
+    {
+      "_id": "数学",
+      "book_count": 3,
+      "average_rating": 4.666666666666667,
+      "max_stock": 25,
+      "min_stock": 4,
+      "total_stock": 48
+    },
+    {
+      "_id": "文学",
+      "book_count": 5,
+      "average_rating": 4.7,
+      "max_stock": 32,
+      "min_stock": 5,
+      "total_stock": 79
+    },
+    {
+      "_id": "经济管理",
+      "book_count": 3,
+      "average_rating": 4.2,
+      "max_stock": 14,
+      "min_stock": 6,
+      "total_stock": 31
+    },
+    {
+      "_id": "计算机",
+      "book_count": 7,
+      "average_rating": 4.5,
+      "max_stock": 22,
+      "min_stock": 0,
+      "total_stock": 82
+    }
+  ],
+  "indexes": {
+    "books_indexes": [
+      {
+        "v": 2,
+        "key": {
+          "_id": 1
+        },
+        "name": "_id_"
+      },
+      {
+        "v": 2,
+        "key": {
+          "isbn": 1
+        },
+        "name": "uniq_isbn",
+        "unique": true
+      },
+      {
+        "v": 2,
+        "key": {
+          "title": 1
+        },
+        "name": "idx_title"
+      },
+      {
+        "v": 2,
+        "key": {
+          "category": 1
+        },
+        "name": "idx_category"
+      },
+      {
+        "v": 2,
+        "key": {
+          "tags": 1
+        },
+        "name": "idx_tags_multikey"
+      },
+      {
+        "v": 2,
+        "key": {
+          "category": 1,
+          "price": 1
+        },
+        "name": "idx_category_price"
+      }
+    ],
+    "explain": {
+      "indexed": {
+        "executionTimeMillis": 2,
+        "nReturned": 3
+      },
+      "natural": {
+        "executionTimeMillis": 0,
+        "nReturned": 3
+      }
+    }
+  },
+  "counts_after": {
+    "books": 20,
+    "readers": 16,
+    "borrow_logs": 26,
+    "category_stats": 5,
+    "book_logs": 0
+  }
+}

@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.log
+*.tmp
+generate_report.py
+build_report.py
+html*.txt
+
+# 实训任务书（教师提供，不需要上传）
+实训任务书-*.html
+第3章*.html
+实验报告模板*.doc
+实验报告-*.docx
+
+# deepseek 临时目录
+deepseek/

@@ -1,0 +1,98 @@
+{
+  "database": "library",
+  "schema": {
+    "books": "created",
+    "readers": "created",
+    "category_stats": "created",
+    "book_logs": "created capped (1MB/1000 docs)",
+    "borrow_logs": "created time-series (hours/2 years)",
+    "book_in_stock": "created"
+  },
+  "operations": {
+    "books": {
+      "inserted": 20,
+      "insertOne": 1,
+      "insertMany": 19
+    },
+    "readers": {
+      "inserted": 16,
+      "insertOne": 1,
+      "insertMany": 15
+    },
+    "borrow_logs": {
+      "insertMany": 66
+    }
+  },
+  "indexes": {
+    "uniq_isbn": "uniq_isbn",
+    "idx_title": "idx_title",
+    "idx_category": "idx_category",
+    "idx_tags_multikey": "idx_tags_multikey",
+    "idx_category_price": "idx_category_price",
+    "uniq_card_no": "uniq_card_no",
+    "idx_reader_status": "idx_reader_status",
+    "idx_book_status": "idx_book_status"
+  },
+  "counts": {
+    "books": 20,
+    "readers": 16,
+    "borrow_logs": 66,
+    "category_stats": 5,
+    "book_logs": 0
+  },
+  "collection_options": [
+    {
+      "name": "book_logs",
+      "type": "collection",
+      "options": {
+        "capped": true,
+        "size": 1048576,
+        "max": 1000
+      }
+    },
+    {
+      "name": "borrow_logs",
+      "type": "timeseries",
+      "options": {
+        "expireAfterSeconds": 63072000,
+        "timeseries": {
+          "timeField": "borrow_date",
+          "granularity": "hours",
+          "bucketMaxSpanSeconds": 2592000
+        }
+      }
+    },
+    {
+      "name": "category_stats",
+      "type": "collection",
+      "options": {}
+    },
+    {
+      "name": "books",
+      "type": "collection",
+      "options": {}
+    },
+    {
+      "name": "readers",
+      "type": "collection",
+      "options": {}
+    },
+    {
+      "name": "book_in_stock",
+      "type": "view",
+      "options": {
+        "viewOn": "books",
+        "pipeline": [
+          {
+            "$match": {
+              "stock": {
+                "$gt": 0
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "category_stats_count": 5
+}
