@@ -1,168 +1,68 @@
-"""CRUD and query operations for the ``books`` collection."""
-
-from __future__ import annotations
-
-from datetime import datetime, timezone
-from typing import Any, Iterable
-
-from pymongo.collection import Collection
+"""图书模块：图书的增删改查、条件检索与评分排行。"""
 
 
-def books_collection(db) -> Collection:
-    return db["books"]
+def insert_book(db, book):
+    """插入一本图书。"""
+    return db.books.insert_one(book)
 
 
-def insert_book(db, book: dict[str, Any]):
-    """Insert one book and return the PyMongo result."""
-
-    return books_collection(db).insert_one(book)
-
-
-def insert_books(db, books: Iterable[dict[str, Any]]):
-    """Insert many books and return the PyMongo result."""
-
-    return books_collection(db).insert_many(list(books), ordered=False)
+def insert_books(db, books):
+    """批量插入图书。"""
+    return db.books.insert_many(list(books))
 
 
-def get_book(db, isbn: str) -> dict[str, Any] | None:
-    return books_collection(db).find_one({"isbn": isbn})
+def get_book(db, isbn):
+    """按 ISBN 查一本图书。"""
+    return db.books.find_one({"isbn": isbn})
 
 
-def list_books(
-    db,
-    filter_query: dict[str, Any] | None = None,
-    *,
-    sort: list[tuple[str, int]] | None = None,
-    limit: int = 0,
-    skip: int = 0,
-    projection: dict[str, int] | None = None,
-) -> list[dict[str, Any]]:
-    cursor = books_collection(db).find(filter_query or {}, projection)
-    if sort:
-        cursor = cursor.sort(sort)
-    if skip:
-        cursor = cursor.skip(skip)
-    if limit:
-        cursor = cursor.limit(limit)
-    return list(cursor)
+def search_books(db, keyword=None, category=None, price_min=None, price_max=None, limit=20):
+    """组合条件检索：关键词同时匹配书名或作者，其余条件按需拼接。"""
+    query = {}
 
-
-def search_books(
-    db,
-    *,
-    keyword: str | None = None,
-    title: str | None = None,
-    author: str | None = None,
-    isbn: str | None = None,
-    category: str | None = None,
-    tags: list[str] | None = None,
-    price_min: float | None = None,
-    price_max: float | None = None,
-    rating_min: float | None = None,
-    rating_max: float | None = None,
-    stock_min: int | None = None,
-    stock_max: int | None = None,
-    publisher_exclude: list[str] | None = None,
-    require_email: bool | None = None,
-    page: int = 1,
-    page_size: int = 10,
-) -> list[dict[str, Any]]:
-    """Build a safe combination query for the platform search screen."""
-
-    query: dict[str, Any] = {}
-    if isbn:
-        query["isbn"] = {"$eq": isbn}
+    # 关键词在书名和作者之间是“或”的关系，不能写成两个字段并列
     if keyword:
         query["$or"] = [
             {"title": {"$regex": keyword, "$options": "i"}},
             {"author": {"$regex": keyword, "$options": "i"}},
         ]
-    if title:
-        query["title"] = {"$regex": title, "$options": "i"}
-    if author:
-        query["author"] = {"$regex": author, "$options": "i"}
+
     if category:
-        query["category"] = {"$eq": category}
-    if tags:
-        query["tags"] = {"$all": tags}
-    for field, low, high in (
-        ("price", price_min, price_max),
-        ("rating", rating_min, rating_max),
-        ("stock", stock_min, stock_max),
-    ):
-        bounds: dict[str, Any] = {}
-        if low is not None:
-            bounds["$gte"] = low
-        if high is not None:
-            bounds["$lte"] = high
-        if bounds:
-            query[field] = bounds
-    if publisher_exclude:
-        query["publisher"] = {"$nin": publisher_exclude}
-    if require_email is not None:
-        query["email"] = {"$exists": require_email}
-    page = max(1, page)
-    page_size = min(100, max(1, page_size))
-    return list_books(
-        db,
-        query,
-        sort=[("title", 1)],
-        skip=(page - 1) * page_size,
-        limit=page_size,
-    )
+        query["category"] = category
+
+    if price_min is not None or price_max is not None:
+        query["price"] = {}
+        if price_min is not None:
+            query["price"]["$gte"] = price_min
+        if price_max is not None:
+            query["price"]["$lte"] = price_max
+
+    return list(db.books.find(query, {"_id": 0}).sort("rating", -1).limit(limit))
 
 
-def top_rated(db, limit: int = 5) -> list[dict[str, Any]]:
-    return list_books(
-        db,
-        sort=[("rating", -1), ("borrow_count", -1), ("isbn", 1)],
-        limit=limit,
-        projection={"_id": 0, "isbn": 1, "title": 1, "rating": 1, "borrow_count": 1},
-    )
+def top_rated(db, limit=5):
+    """评分排行，分数相同时按借阅次数排。"""
+    cursor = db.books.find({}, {"_id": 0, "isbn": 1, "title": 1, "rating": 1, "borrow_count": 1})
+    return list(cursor.sort([("rating", -1), ("borrow_count", -1)]).limit(limit))
 
 
-def update_stock(db, isbn: str, delta: int):
-    return books_collection(db).update_one({"isbn": isbn}, {"$inc": {"stock": delta}})
+def update_stock(db, isbn, delta):
+    """调整库存，正数入库、负数出库。"""
+    return db.books.update_one({"isbn": isbn}, {"$inc": {"stock": delta}})
 
 
-def discount_category(db, category: str, factor: float = 0.9):
-    if not 0 < factor <= 1:
-        raise ValueError("factor must be between 0 and 1")
-    return books_collection(db).update_many(
-        {"category": category}, {"$mul": {"price": factor}}
-    )
+def delete_book(db, isbn):
+    """删除一本图书。"""
+    return db.books.delete_one({"isbn": isbn})
 
 
-def touch_book(db, isbn: str):
-    return books_collection(db).update_one(
-        {"isbn": isbn}, {"$currentDate": {"last_checked": True}}
-    )
+def delete_books(db, query=None):
+    """按条件批量删除。空条件直接拒绝，避免误删整个集合。"""
+    if not query:
+        raise ValueError("批量删除必须给条件，不能传空查询")
+    return db.books.delete_many(query).deleted_count
 
 
-def remove_tags(db, isbn: str):
-    return books_collection(db).update_one({"isbn": isbn}, {"$unset": {"tags": ""}})
-
-
-def delete_book(db, isbn: str):
-    return books_collection(db).delete_one({"isbn": isbn})
-
-
-def count_books(db, query: dict[str, Any] | None = None) -> int:
-    return books_collection(db).count_documents(query or {})
-
-
-def all_categories(db) -> list[str]:
-    return sorted(books_collection(db).distinct("category"))
-
-
-def insert_audit_event(db, action: str, isbn: str, details: dict[str, Any] | None = None):
-    """Write an operation event to the capped collection."""
-
-    event = {
-        "action": action,
-        "isbn": isbn,
-        "at": datetime.now(timezone.utc),
-        "details": details or {},
-    }
-    return db["book_logs"].insert_one(event)
-
+def count_books(db, query=None):
+    """统计图书数量。"""
+    return db.books.count_documents(query or {})
