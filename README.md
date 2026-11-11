@@ -15,7 +15,7 @@
 | 四 应用开发 | 完成 | 9 个模块、16 项菜单（含读者增删改查与分页），GridFS 字节与 MD5 校验一致，审计日志 |
 | 五 副本集 | 完成 | 三节点 rs0（27018），故障转移有完整时间线，节点增删 |
 | 六 分片集群 | 完成 | configsvr + 2 分片 + mongos（27019—27022），1500 / 1500 分布 |
-| 七 验收 | 完成 | 文档 14 页（27 表 4 图），Compass 聚合与命令行一致，导出两个集合，46 张截图（本项目不设答辩） |
+| 七 验收 | 基本完成 | Compass 聚合与命令行一致，导出两个集合，46 张截图；最终文档待放入 docs/ |
 
 ## 二、环境
 
@@ -32,21 +32,20 @@
 
 ```
 mongodb_connect.py   连接封装（URI、库名、账号全部走环境变量）
-book_manager.py      馆藏检索
-reader_manager.py    读者与学院、等级统计
+book_manager.py      馆藏检索与维护（增删改、分页）
+reader_manager.py    读者查询、学院/等级统计、增删改、分页
 borrow_manager.py    借阅、归还、逾期
 stat_manager.py      分类统计、排行、趋势、结果落库
 gridfs_manager.py    电子书上传、下载、校验、清单
 audit_manager.py     操作日志
 setup_smartlib.py    建库、建索引、导入、上传（带数量断言）
 main.py              菜单主程序（16 项）
-data/                三份数据集 + gridfs_files
-docs/final/          期末项目文档（md 源 + docx 成稿 + 构建脚本）
-scripts/vm/          虚拟机部署脚本（安装、固定 IP、副本集、分片）
-evidence/            生成截图用的脚本
-screenshots/         46 张执行截图（三、四在虚拟机 6.0.29 上重跑）
+data/                三份数据集 + gridfs_files（6 个文件 + 清单）
+screenshots/         46 张执行截图（T3-01 … T7-05）
 exports/             导出的 JSON
-legacy/              第三章课程项目旧版（git 标签 v1-coursework）
+scripts/             部署手册 + vm/ 虚拟机部署脚本
+docs/                项目文档与截图清单
+legacy/              第三章课程项目旧版（标签 v1-coursework）
 ```
 
 ## 四、运行
@@ -68,10 +67,10 @@ python main.py                     # 交互菜单（16 项）
 
 ## 五、文档与截图
 
-- 期末项目文档：[docs/final/智慧图书馆数字资源平台-期末项目文档.docx](docs/final/智慧图书馆数字资源平台-期末项目文档.docx)
-- 重新生成文档：`python docs/final/build_report.py`（依赖 python-docx）
+- 项目文档：放在 docs/ 目录下
 - 截图清单：[docs/final/截图清单.md](docs/final/截图清单.md)
 - 部署手册：[scripts/副本集部署.md](scripts/副本集部署.md)、[scripts/分片集群部署.md](scripts/分片集群部署.md)
+- 过程截图：[screenshots/](screenshots/)（46 张，T3-01 … T7-05）
 
 ## 六、两个关键设计取舍
 
@@ -82,9 +81,11 @@ python main.py                     # 交互菜单（16 项）
 **audit_logs 用固定集合。** 日志只追加、按时间倒序读最近 100 条，capped 集合自动淘汰旧记录；
 参数 16MB / 10 万条。
 
-## 七、提交包
+## 七、交付说明
 
-`submission/` 目录已按交付要求整理：`src/`（9 个源文件）、`data/`、`screenshots/`（46 张）、`exports/`、`scripts/`（部署脚本与手册）、`docs/`（放最终文档）。
+仓库只放项目主体：源码、数据集、截图、导出结果、部署脚本与文档。
+另外在本地按任务书「四、提交要求」整理了一份交付目录（01 源代码 / 02 数据库与配置 / 03 项目文档 / 04 过程记录）并打包为 zip，
+该目录与压缩包已加入 .gitignore，不随仓库上传。
 
 ## 八、作者
 
