@@ -4,14 +4,14 @@ import os
 
 from pymongo import MongoClient
 
-# 换环境时只改这一处
+# 换环境只改环境变量：单机 27017、副本集 27018、分片 mongos 27022
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017")
-DATABASE_NAME = os.getenv("MONGO_DB", "library")
+DATABASE_NAME = os.getenv("MONGO_DB", "smartlib")
 
 # 启用认证后通过环境变量传入账号，没设置就按无认证连接
 USERNAME = os.getenv("MONGO_USERNAME")
 PASSWORD = os.getenv("MONGO_PASSWORD")
-AUTH_SOURCE = os.getenv("MONGO_AUTH_SOURCE", "library")
+AUTH_SOURCE = os.getenv("MONGO_AUTH_SOURCE", DATABASE_NAME)
 
 
 def get_client():
@@ -28,7 +28,7 @@ def get_client():
 
 
 def get_db(client=None):
-    """取得 library 数据库对象。"""
+    """取得当前配置的数据库对象（默认 smartlib）。"""
     return (client or get_client())[DATABASE_NAME]
 
 

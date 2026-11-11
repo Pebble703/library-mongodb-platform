@@ -1,8 +1,7 @@
-"""读者模块：读者信息查询与学院、等级的分布统计。"""
+"""读者模块：读者查询与学院、等级分布统计。"""
 
 
 def list_readers(db, query=None, limit=0):
-    """查看读者列表，可按条件过滤。"""
     cursor = db.readers.find(query or {}, {"_id": 0}).sort("card_no", 1)
     if limit:
         cursor = cursor.limit(limit)
@@ -10,12 +9,10 @@ def list_readers(db, query=None, limit=0):
 
 
 def get_reader(db, card_no):
-    """按借阅证号查一位读者。"""
-    return db.readers.find_one({"card_no": card_no})
+    return db.readers.find_one({"card_no": card_no}, {"_id": 0})
 
 
 def count_readers(db, query=None):
-    """统计读者数量。"""
     return db.readers.count_documents(query or {})
 
 
@@ -38,5 +35,40 @@ def level_statistics(db):
 
 
 def distinct_colleges(db):
-    """取出所有学院名称。"""
     return sorted(db.readers.distinct("college"))
+
+def insert_reader(db, reader):
+    """新增读者，证号重复会被唯一索引拦住。"""
+    return db.readers.insert_one(reader)
+
+
+def update_reader(db, card_no, fields):
+    """修改读者信息，证号不允许改。"""
+    allowed = {"name", "college", "level", "email", "fav_categories", "register_date"}
+    data = {k: v for k, v in fields.items() if k in allowed}
+    if not data:
+        raise ValueError("没有可更新的字段")
+    return db.readers.update_one({"card_no": card_no}, {"$set": data})
+
+
+def delete_reader(db, card_no):
+    """删除读者：还有未归还借阅时拒绝删除，避免流水指向不存在的读者。"""
+    active = db.borrow_logs.count_documents(
+        {"reader_card": card_no, "status": {"$in": ["借出", "逾期"]}})
+    if active:
+        raise ValueError("该读者还有 %d 条未归还借阅，不能删除" % active)
+    return db.readers.delete_one({"card_no": card_no})
+
+
+def list_page(db, query=None, page=1, size=10, sort=None):
+    """分页浏览读者。"""
+    query = query or {}
+    size = max(1, size)
+    total = db.readers.count_documents(query)
+    pages = max(1, (total + size - 1) // size)
+    page = min(max(1, page), pages)
+    cursor = (db.readers.find(query, {"_id": 0, "card_no": 1, "name": 1, "college": 1, "level": 1})
+              .sort(sort or [("card_no", 1)])
+              .skip((page - 1) * size)
+              .limit(size))
+    return {"total": total, "pages": pages, "page": page, "size": size, "rows": list(cursor)}

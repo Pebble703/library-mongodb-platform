@@ -1,0 +1,10 @@
+﻿sh.enableSharding("qa_tmp");
+db.getSiblingDB("qa_tmp").createCollection("t");
+sh.shardCollection("qa_tmp.t", { _id: "hashed" });
+const d = db.getSiblingDB("config").databases.findOne({ _id: "qa_tmp" });
+print("qa_tmp partitioned = " + d.partitioned);
+const c = db.getSiblingDB("config").collections.findOne({ _id: "qa_tmp.t" });
+print("qa_tmp.t 已分片 = " + (c.key !== undefined));
+db.getSiblingDB("qa_tmp").t.drop();
+db.getSiblingDB("qa_tmp").dropDatabase();
+print("已清理测试库");

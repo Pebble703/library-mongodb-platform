@@ -32,3 +32,33 @@ deepseek/
 _backup_*/
 _original_doubao_*/
 artifacts/
+
+# 本地打包备份与下载目录
+数据库项目1/
+数据库项目1.zip
+downloads/
+_mongotest/
+
+# 交付副本与本地交作业成品目录（不入仓库）
+submission/
+deliverable/
+
+# 本地验证脚本与过程工件
+evidence/
+
+# WorkBuddy 工作区数据
+.workbuddy/
+
+# 通用压缩包
+*.zip
+
+# docs/final 文档源稿与参考 docx（本地保留，不入仓库；截图清单.md 仍跟踪）
+docs/final/01-项目概述.md
+docs/final/02-技术选型论证.md
+docs/final/03-数据模型设计.md
+docs/final/04-功能实现.md
+docs/final/05-文件存储.md
+docs/final/06-架构演进.md
+docs/final/07-测试与总结.md
+docs/final/build_report.py
+docs/final/智慧图书馆数字资源平台-期末项目文档.docx
